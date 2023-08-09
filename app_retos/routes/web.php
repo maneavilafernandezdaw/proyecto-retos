@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\GrupoController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +16,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', HomeController::class)->name('home');
+
+Route::controller(GrupoController::class)->group(function(){
+    Route::get('grupos', 'index')->name('grupos.index');
+    Route::get('grupos/create', 'create')->name('grupos.create');
+    Route::post('grupos', 'store')->name('grupos.store');
+    Route::get('grupos/{grupo}', 'show')->name('grupos.show');
+    
+    Route::get('grupos/{grupo}/edit', 'edit')->name('grupos.edit');
+    Route::put('grupos/{grupo}', 'update')->name('grupos.update');
 });
+
+
+
