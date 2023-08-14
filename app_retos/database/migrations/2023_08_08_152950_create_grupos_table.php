@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->text('description');
             $table->string('category');
+           /*  $table->integer('user'); */
+            $table->foreignId('user')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

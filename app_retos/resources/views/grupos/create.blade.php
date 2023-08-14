@@ -1,4 +1,4 @@
-@extends('layouts.plantilla')
+@extends('layouts.app')
 
 @section('title','Crear Grupo')
 
@@ -22,6 +22,7 @@
     <br>
     <input type="text" name="category" id="category">
     <br><br>
+    <input type="hidden" name="user" id="user" value="{{ Auth::user()->id }}">
 <br>
 <button type="submit">Crear</button>
 </form>

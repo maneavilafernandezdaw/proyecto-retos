@@ -1,10 +1,9 @@
-
-@extends('layouts.plantilla')
-
-@section('title','Home')
+@extends('layouts.app')
 
 @section('content')
+<div class="container">
+    <h2><a href="{{ route('grupos.index') }}">Ver Grupos</a></h2>
+    <h2><a href="{{ route('grupos.create') }}">Crear Grupo</a></h2>
 
-<h1>Bienvenido a la pagina principal</h1>
-
+</div>
 @endsection

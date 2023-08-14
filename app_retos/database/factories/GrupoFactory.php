@@ -22,7 +22,8 @@ class GrupoFactory extends Factory
         return [
             'name' => $this->faker->unique()->sentence(),
             'description' => $this->faker->paragraph(),
-            'category' => $this->faker->randomElement(['MTB','Run','Road'])
+            'category' => $this->faker->randomElement(['MTB','Run','Road']),
+            'user' => $this->faker->unique()->number_format(),
         ];
     }
 }

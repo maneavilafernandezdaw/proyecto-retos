@@ -2,8 +2,9 @@
 
 use App\Http\Controllers\GrupoController;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
-
+use App\Http\Controllers\UsersgrupoControler;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,17 +17,27 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', HomeController::class)->name('home');
 
-Route::controller(GrupoController::class)->group(function(){
+
+
+Route::controller(GrupoController::class)->group(function () {
     Route::get('grupos', 'index')->name('grupos.index');
     Route::get('grupos/create', 'create')->name('grupos.create');
     Route::post('grupos', 'store')->name('grupos.store');
     Route::get('grupos/{grupo}', 'show')->name('grupos.show');
-    
+
     Route::get('grupos/{grupo}/edit', 'edit')->name('grupos.edit');
     Route::put('grupos/{grupo}', 'update')->name('grupos.update');
 });
 
+Route::controller(UsersgrupoControler::class)->group(function () {
+    Route::get('usersgrupo', 'index')->name('usersgrupo.index');
+    Route::get('usersgrupo/misgrupos', 'misgrupos')->name('usersgrupo.misgrupos');
+    Route::get('usersgrupo/otrosgrupos', 'otrosgrupos')->name('usersgrupo.otrosgrupos');
+    Route::post('usersgrupo', 'store')->name('usersgrupo.store');
+    
+});
 
+Auth::routes();
 
+Route::get('/', [HomeController::class, 'index'])->name('home');

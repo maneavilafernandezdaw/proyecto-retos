@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Grupo;
 use App\Models\Usersgrupo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class GrupoController extends Controller
+class UserController extends Controller
 {
     public function index()
     {
         if (Auth::check()) {
-            $grupos = Grupo::orderBy('id', 'desc')->paginate();
-            return view('grupos.index', compact('grupos'));
+            $users = User::orderBy('id', 'desc')->paginate();
+            return view('users.index', compact('users'));
         }
         return view('auth.login');
     }
@@ -38,31 +39,21 @@ class GrupoController extends Controller
 
         $grupo->save();
 
+        $usersgrupo = new Usersgrupo();
+
+        $usersgrupo->idgrupo = $grupo->id;
      
-        $Existe = Usersgrupo::where('idgrupo', $grupo->id)
-            ->where('iduser', $request->user)
-            ->first();
+        $usersgrupo->iduser = $request->user;
 
-        if ($Existe) {
-            // El producto ya existe en la base de datos
-            echo "El producto ya existe.";
-        } else {
-            $usersgrupo = new Usersgrupo();
+        $usersgrupo->save();
 
-            $usersgrupo->idgrupo = $grupo->id;
-
-            $usersgrupo->iduser = $request->user;
-
-            $usersgrupo->save();
-
-            return redirect()->route('grupos.show', $grupo);
-        }
+        return redirect()->route('grupos.show', $grupo);
     }
 
-    public function show(Grupo $grupo)
+    public function show(User $user)
     {
         if (Auth::check()) {
-            return view('grupos.show', compact('grupo'));
+            return $user;
         }
         return view('auth.login');
     }
