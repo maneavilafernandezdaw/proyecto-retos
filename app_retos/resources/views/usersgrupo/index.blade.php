@@ -7,9 +7,12 @@
 @section('content')
 
     <div class="container">
+
+        <h4><a href="{{ route('grupos.index') }}">Volver a Grupos</a></h4>
+
         <h1>Pagina principal usersgrupo</h1><br>
 
-
+       
 
         <ul><br>
      

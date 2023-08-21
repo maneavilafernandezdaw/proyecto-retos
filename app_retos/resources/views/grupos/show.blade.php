@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <h2><a href="{{ route('grupos.index') }}">Volver a Grupos</a></h2>
+    <h4><a href="{{ route('grupos.index') }}">Volver a Grupos</a></h4>
 
     @if(Auth::user()->id == $grupo->user)
 
@@ -17,5 +17,11 @@
 
     <p><strong>Descripción: </strong>{{ $grupo->description }}</p>
     <p><strong>Categoría: </strong>{{ $grupo->category }}</p>
-    <p><strong>Creado por: </strong>{{ $grupo->user }}</p>
+    
+        @foreach ($usuarios as $user)
+        @if ($grupo->user === $user->id)
+            <p><strong>Creado por: </strong>{{ $user->name }}</p>
+        @endif
+    @endforeach
+      
 @endsection

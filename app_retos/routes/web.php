@@ -33,6 +33,7 @@ Route::controller(GrupoController::class)->group(function () {
 Route::controller(UsersgrupoControler::class)->group(function () {
     Route::get('usersgrupo', 'index')->name('usersgrupo.index');
     Route::get('usersgrupo/misgrupos', 'misgrupos')->name('usersgrupo.misgrupos');
+    Route::delete('usersgrupo', 'delete')->name('usersgrupo.delete');
     Route::get('usersgrupo/otrosgrupos', 'otrosgrupos')->name('usersgrupo.otrosgrupos');
     Route::post('usersgrupo', 'store')->name('usersgrupo.store');
     

@@ -77,4 +77,28 @@ class UsersgrupoControler extends Controller
         }
         return view('auth.login');
     }
+
+    public function delete(Request $request) {
+       
+        
+        $registro = Usersgrupo::where('idgrupo', $request->idgrupo)->where('iduser', $request->iduser);
+    
+        $registro->delete();
+        
+        $grupos = Grupo::orderBy('id', 'desc')->paginate();
+
+        $usuarios = User::all();
+
+        $misgrupos = Usersgrupo::where('iduser', Auth::user()->id)->get();
+
+
+        return view('usersgrupo.misgrupos', compact('misgrupos', 'grupos', 'usuarios'));
+
+
+
+        
+    
+
+
+}
 }

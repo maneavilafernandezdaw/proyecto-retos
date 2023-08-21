@@ -7,6 +7,7 @@
 @section('content')
 
     <div class="container">
+        <h4><a href="{{ route('grupos.index') }}">Volver a Grupos</a></h4>
         <h1>Mis Grupos</h1><br>
 
 
@@ -25,7 +26,17 @@
                                     <p><strong>Creado por: </strong>{{ $user->name }}</p>
                                 @endif
                             @endforeach
-                        </li><br>
+
+                            <form action="{{ route('usersgrupo.delete') }}" method="POST">
+
+                                @csrf
+                                @method('delete')
+                                <input type="hidden" name="iduser" id="iduser" value="{{ Auth::user()->id }}">
+                                <input type="hidden" name="idgrupo" id="idgrupo" value="{{ $grupo->id }}">
+    
+                                <button type="submit">Borrar</button>
+                            </form><br>
+
                     @endif
                 @endforeach
             @endforeach

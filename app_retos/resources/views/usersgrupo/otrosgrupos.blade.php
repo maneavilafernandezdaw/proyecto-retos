@@ -7,6 +7,8 @@
 @section('content')
 
     <div class="container">
+        <h4><a href="{{ route('grupos.index') }}">Volver a Grupos</a></h4>
+
         <h1>Lista de grupos</h1><br>
 
 

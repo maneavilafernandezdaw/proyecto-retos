@@ -4,6 +4,8 @@
 
 @section('content')
 
+<h4><a href="{{ route('grupos.index') }}">Volver a Grupos</a></h4>
+
 <h1>Pagina para crear un grupo</h1> 
 
 <form action="{{ route('grupos.store') }}" method="POST">

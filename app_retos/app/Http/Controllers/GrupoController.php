@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Grupo;
 use App\Models\Usersgrupo;
 use Illuminate\Http\Request;
@@ -13,6 +14,7 @@ class GrupoController extends Controller
     {
         if (Auth::check()) {
             $grupos = Grupo::orderBy('id', 'desc')->paginate();
+           
             return view('grupos.index', compact('grupos'));
         }
         return view('auth.login');
@@ -62,7 +64,8 @@ class GrupoController extends Controller
     public function show(Grupo $grupo)
     {
         if (Auth::check()) {
-            return view('grupos.show', compact('grupo'));
+            $usuarios = User::all();
+            return view('grupos.show', compact('grupo','usuarios'));
         }
         return view('auth.login');
     }
