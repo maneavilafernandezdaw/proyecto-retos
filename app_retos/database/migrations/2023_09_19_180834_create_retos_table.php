@@ -12,8 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('retos', function (Blueprint $table) {
+    
             $table->id();
+            $table->string('name')->unique();
+            $table->text('description');
+            $table->string('category');
+            $table->integer('distancia');
+            $table->date('fechaInicio');
+            $table->date('fechaFinal');
+            $table->foreignId('user')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
+
         });
     }
 
