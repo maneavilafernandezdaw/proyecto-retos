@@ -18,7 +18,9 @@ use App\Http\Controllers\UsersgrupoControler;
 */
 
 
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
+Auth::routes();
 
 Route::controller(GrupoController::class)->group(function () {
     Route::get('grupos', 'index')->name('grupos.index');
@@ -39,6 +41,6 @@ Route::controller(UsersgrupoControler::class)->group(function () {
     
 });
 
-Auth::routes();
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+
+

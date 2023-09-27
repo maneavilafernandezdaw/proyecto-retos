@@ -7,7 +7,8 @@
     "require": {
         "php": "^8.1",
         "doctrine/dbal": "^3.6",
-        "guzzlehttp/guzzle": "^7.7",
+        "guzzlehttp/guzzle": "^6.3|^7.0.1|^7.2",
+        "illuminate/support": "5.5.*|5.6.*|5.7.*|5.8.*|^6.0|^7.0|^8.0|^9.0|^10.0",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
@@ -26,7 +27,8 @@
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/"
+            "Database\\Seeders\\": "database/seeders/",
+            "CodeToad\\Strava\\": "src/"
         }
     },
     "autoload-dev": {
@@ -52,6 +54,12 @@
     "extra": {
         "laravel": {
             "dont-discover": []
+        },
+        "providers": [
+            "CodeToad\\Strava\\StravaServiceProvider"
+        ],
+        "aliases": {
+            "Strava": "CodeToad\\Strava\\StravaFacade"
         }
     },
     "config": {
